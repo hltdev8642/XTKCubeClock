@@ -1,0 +1,419 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Old School Clock</title>
+    <style>
+      body {
+        background-color: #2c2b2a;
+        color: white; /* font color */
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: auto;
+        width: auto;
+        overflow: hidden !important;
+      }
+
+    </style>
+    
+    <script type="text/javascript" src="http://get.goXTK.com/xtk_edge.js"></script>
+
+    <script type="text/javascript">
+          var count = 25;
+          var rowCnt = 7;
+          
+var row1 = [];
+     var row2 = [];
+     var row3 = [];
+     var row4 = [];
+     var row5 = [];
+     var row6 = [];
+     var row7 = []; 
+     var row8 = [];
+     var row9 = [];
+    var row10 = [];
+var row11 = [];
+     var row12 = [];
+     var row13 = [];
+     var row14 = [];
+     var row15 = [];
+     var row16 = [];
+     var row17 = []; 
+     var row18 = [];
+
+     var O = [0,0,0]
+     var I = [1,0,0]
+
+     var seconds = 10;
+     var minutes=10;
+      window.onload = function ()
+      {
+     
+      r = new X.renderer3D();
+      r.init();
+            r.camera.position = [0,0,1000];
+
+      
+     draw_row(row1,[0,count*1,0],rowCnt,[0,0,0]) 
+     draw_row(row2,[0,count*2,0],rowCnt,[0,0,0])
+     draw_row(row3,[0,count*3,0],rowCnt,[0,0,0])
+     draw_row(row4,[0,count*4,0],rowCnt,[0,0,0])
+     draw_row(row5,[0,count*5,0],rowCnt,[0,0,0])
+     draw_row(row6,[0,count*6,0],rowCnt,[0,0,0])
+     draw_row(row7,[0,count*7,0],rowCnt,[0,0,0])
+     draw_row(row8,[0,count*8,0],rowCnt,[0,0,0])
+     draw_row(row9,[0,count*9,0],rowCnt,[0,0,0])
+/*
+ //minute hand/counter
+ 
+    draw_row(row10,[count*rowCnt,count*1, 0],rowCnt,[0,0,0]) 
+    draw_row(row11,[count*rowCnt,count*2, 0],rowCnt,[0,0,0])    
+    draw_row(row12,[count*rowCnt,count*3, 0],rowCnt,[0,0,0])     
+    draw_row(row13,[count*rowCnt,count*4, 0],rowCnt,[0,0,0])     
+    draw_row(row14,[count*rowCnt,count*5, 0],rowCnt,[0,0,0])     
+    draw_row(row15,[count*rowCnt,count*6, 0],rowCnt,[0,0,0])     
+    draw_row(row16,[count*rowCnt,count*7,0],rowCnt,[0,0,0])     
+    draw_row(row17,[count*rowCnt,count*8,0],rowCnt,[0,0,0])     
+    draw_row(row18,[count*rowCnt,count*9,0],rowCnt,[0,0,0]) 
+    */
+/*
+    draw_row(row2,[0,0,count*2],rowCnt,[0,0,0])
+    draw_row(row3,[0,0,count*3],rowCnt,[0,0,0])
+    draw_row(row4,[0,0,count*4],rowCnt,[0,0,0])
+    draw_row(row14,[0,0,count*5],rowCnt,[0,0,0])
+    draw_row(row6,[0,0,count*6],rowCnt,[0,0,0])
+    draw_row(row7,[0,0,count*7],rowCnt,[0,0,0])
+    draw_row(row8,[0,0,count*8],rowCnt,[0,0,0])
+    draw_row(row9,[0,0,count*9],rowCnt,[0,0,0])
+    */
+
+    // setTimeout(function ()
+    // {
+    //   digits(0);
+    //   setTimeout(function ()
+    //   {
+    //     digits(1);
+    //     setTimeout(function ()
+    //     {
+    //       digits(0);
+    //     },1000)
+    //   },1000)
+    // }, 1000)
+    //  // digits(1);
+
+
+// digits(0);
+
+    // display(row1,[off,off,off,off,off,off,off]);
+    // display(row2,[off,off,on,on,off,off,off]);
+    // display(row3,[off,off,on,on,off,off,off]);
+    // display(row4,[off,off,on,on,off,off,off]);
+    // display(row14,[off,off,on,on,off,off,off]);
+    // display(row6,[off,off,on,on,off,off,off]);
+    // display(row7,[off,off,on,on,off,off,off]);
+    // display(row8,[off,off,on,on,off,off,off]);
+    // display(row9,[off,off,off,off,off,off,off]);
+
+}
+    function draw_row(name, start, howmany, color) 
+    {
+
+      var gap=1;
+      var obj = name;
+
+
+
+      for (var i=0; i<howmany; i++) 
+      {
+
+        obj.push(new X.cube());
+        obj[i].color = color;
+        obj[i].center = [start[0]+i*20+i*5, start[1], start[2]];
+        obj[i].opacity = 1.0
+        r.add(obj[i]);
+        
+      }
+      r.render(); 
+
+    }
+
+function incrementSeconds() {
+seconds++;
+
+if(seconds==11)
+{
+//minutes++;
+seconds=1;
+}
+/*
+if (minutes==11)
+{minutes=1}
+ 
+    digitsb(minutes)
+*/
+        digits(seconds);
+}
+
+var cancel = setInterval(incrementSeconds, 1000);
+
+   function display (row,rIn)
+    {
+// r2,r3,r4,r5,r6,r7,r8,r9
+      for (var i = 0; i<rowCnt; i++)
+      {
+        row[i].color = [rIn[i][0],rIn[i][1],rIn[i][2]]
+        // row2[i].color = r2[i];
+        // row3[i].color = r3[i];
+        // row4[i].color = r4[i];
+        // row14[i].color = r5[i];
+        // row6[i].color = r6[i];
+        // row7[i].color = r7[i];
+        // row8[i].color = r8[i];
+        // row9[i].color = r9[i];
+      }
+r.render()
+    }
+ function digits(number)
+{
+this.number=number || 8;
+switch (this.number)
+{
+case 1:
+display(row1,[O,O,O,O,O,O,O]);
+display(row2,[O,O,O,I,O,O,O]);
+display(row3,[O,O,O,I,O,O,O]);
+display(row4,[O,O,O,I,O,O,O]);
+display(row5,[O,O,O,I,O,O,O]);
+display(row6,[O,O,O,I,O,O,O]);
+display(row7,[O,O,O,I,O,O,O]);
+display(row8,[O,O,O,I,O,O,O]);
+display(row9,[O,O,O,O,O,O,O]);
+break;
+case 2:
+display(row1,[O,O,O,O,O,O,O]);
+display(row2,[O,I,I,I,I,I,O]);
+display(row3,[O,I,O,O,O,O,O]);
+display(row4,[O,I,O,O,O,O,O]);
+display(row5,[O,I,I,I,I,I,O]);
+display(row6,[O,O,O,O,O,I,O]);
+display(row7,[O,O,O,O,O,I,O]);
+display(row8,[O,I,I,I,I,I,O]);
+display(row9,[O,O,O,O,O,O,O]);
+break;
+case 3:
+display(row1,[O,O,O,O,O,O,O]);
+display(row2,[O,I,I,I,I,I,O]);
+display(row3,[O,O,O,O,O,I,O]);
+display(row4,[O,O,O,O,O,I,O]);
+display(row5,[O,I,I,I,I,I,O]);
+display(row6,[O,O,O,O,O,I,O]);
+display(row7,[O,O,O,O,O,I,O]);
+display(row8,[O,I,I,I,I,I,O]);
+display(row9,[O,O,O,O,O,O,O]);
+break;
+case 4:
+display(row1,[O,O,O,O,O,O,O]);
+display(row2,[O,O,O,O,O,I,O]);
+display(row3,[O,O,O,O,O,I,O]);
+display(row4,[O,O,O,O,O,I,O]);
+display(row5,[O,I,I,I,I,I,O]);
+display(row6,[O,I,O,O,O,I,O]);
+display(row7,[O,I,O,O,O,I,O]);
+display(row8,[O,I,O,O,O,I,O]);
+display(row9,[O,O,O,O,O,O,O]);
+break;
+case 5:
+display(row1,[O,O,O,O,O,O,O]);
+display(row2,[O,I,I,I,I,I,O]);
+display(row3,[O,O,O,O,O,I,O]);
+display(row4,[O,O,O,O,O,I,O]);
+display(row5,[O,I,I,I,I,I,O]);
+display(row6,[O,I,O,O,O,O,O]);
+display(row7,[O,I,O,O,O,O,O]);
+display(row8,[O,I,I,I,I,I,O]);
+display(row9,[O,O,O,O,O,O,O]);
+break;
+case 6:
+display(row9,[O,O,O,O,O,O,O]);
+display(row8,[O,I,I,I,I,I,O]);
+display(row7,[O,I,O,O,O,O,O]);
+display(row6,[O,I,O,O,O,O,O]);
+display(row5,[O,I,I,I,I,I,O]);
+display(row4,[O,I,O,O,O,I,O]);
+display(row3,[O,I,O,O,O,I,O]);
+display(row2,[O,I,I,I,I,I,O]);
+display(row1,[O,O,O,O,O,O,O]);
+break;
+case 7:
+display(row9,[O,O,O,O,O,O,O]);
+display(row8,[O,I,I,I,I,I,O]);
+display(row7,[O,O,O,O,O,I,O]);
+display(row6,[O,O,O,O,O,I,O]);
+display(row5,[O,O,O,O,O,I,O]);
+display(row4,[O,O,O,O,O,I,O]);
+display(row3,[O,O,O,O,O,I,O]);
+display(row2,[O,O,O,O,O,I,O]);
+display(row1,[O,O,O,O,O,O,O]);
+break;
+case 8:
+display(row9,[O,O,O,O,O,O,O]);
+display(row8,[O,I,I,I,I,I,O]);
+display(row7,[O,I,O,O,O,I,O]);
+display(row6,[O,I,O,O,O,I,O]);
+display(row5,[O,I,I,I,I,I,O]);
+display(row4,[O,I,O,O,O,I,O]);
+display(row3,[O,I,O,O,O,I,O]);
+display(row2,[O,I,I,I,I,I,O]);
+display(row1,[O,O,O,O,O,O,O]);
+break;
+case 9:
+display(row1,[O,O,O,O,O,O,O]);
+display(row2,[O,I,I,I,I,I,O]);
+display(row3,[O,O,O,O,O,I,O]);
+display(row4,[O,O,O,O,O,I,O]);
+display(row5,[O,I,I,I,I,I,O]);
+display(row6,[O,I,O,O,O,I,O]);
+display(row7,[O,I,O,O,O,I,O]);
+display(row8,[O,I,I,I,I,I,O]);
+display(row9,[O,O,O,O,O,O,O]);
+break;
+case 10:
+display(row1,[O,O,O,O,O,O,O]);
+display(row2,[O,I,I,I,I,I,O]);
+display(row3,[O,I,O,O,O,I,O]);
+display(row4,[O,I,O,O,O,I,O]);
+display(row5,[O,I,O,O,O,I,O]);
+display(row6,[O,I,O,O,O,I,O]);
+display(row7,[O,I,O,O,O,I,O]);
+display(row8,[O,I,I,I,I,I,O]);
+display(row9,[O,O,O,O,O,O,O]);
+break;
+}
+    }
+    /*
+    
+function digitsb(number)
+{
+this.number=number || 8;
+switch (this.number)
+{
+case 1:
+display(row10,[O,O,O,O,O,O,O]);
+display(row11,[O,O,O,I,O,O,O]);
+display(row12,[O,O,O,I,O,O,O]);
+display(row13,[O,O,O,I,O,O,O]);
+display(row14,[O,O,O,I,O,O,O]);
+display(row15,[O,O,O,I,O,O,O]);
+display(row16,[O,O,O,I,O,O,O]);
+display(row17,[O,O,O,I,O,O,O]);
+display(row18,[O,O,O,O,O,O,O]);
+break;
+case 2:
+display(row10,[O,O,O,O,O,O,O]);
+display(row11,[O,I,I,I,I,I,O]);
+display(row12,[O,I,O,O,O,O,O]);
+display(row13,[O,I,O,O,O,O,O]);
+display(row14,[O,I,I,I,I,I,O]);
+display(row15,[O,O,O,O,O,I,O]);
+display(row16,[O,O,O,O,O,I,O]);
+display(row17,[O,I,I,I,I,I,O]);
+display(row18,[O,O,O,O,O,O,O]);
+break;
+case 3:
+display(row10,[O,O,O,O,O,O,O]);
+display(row11,[O,I,I,I,I,I,O]);
+display(row12,[O,O,O,O,O,I,O]);
+display(row13,[O,O,O,O,O,I,O]);
+display(row14,[O,I,I,I,I,I,O]);
+display(row15,[O,O,O,O,O,I,O]);
+display(row16,[O,O,O,O,O,I,O]);
+display(row17,[O,I,I,I,I,I,O]);
+display(row18,[O,O,O,O,O,O,O]);
+break;
+case 4:
+display(row10,[O,O,O,O,O,O,O]);
+display(row11,[O,O,O,O,O,I,O]);
+display(row12,[O,O,O,O,O,I,O]);
+display(row13,[O,O,O,O,O,I,O]);
+display(row14,[O,I,I,I,I,I,O]);
+display(row15,[O,I,O,O,O,I,O]);
+display(row16,[O,I,O,O,O,I,O]);
+display(row17,[O,I,O,O,O,I,O]);
+display(row18,[O,O,O,O,O,O,O]);
+break;
+case 5:
+display(row10,[O,O,O,O,O,O,O]);
+display(row11,[O,I,I,I,I,I,O]);
+display(row12,[O,O,O,O,O,I,O]);
+display(row13,[O,O,O,O,O,I,O]);
+display(row14,[O,I,I,I,I,I,O]);
+display(row15,[O,I,O,O,O,O,O]);
+display(row16,[O,I,O,O,O,O,O]);
+display(row17,[O,I,I,I,I,I,O]);
+display(row18,[O,O,O,O,O,O,O]);
+break;
+case 6:
+display(row18,[O,O,O,O,O,O,O]);
+display(row17,[O,I,I,I,I,I,O]);
+display(row16,[O,I,O,O,O,O,O]);
+display(row15,[O,I,O,O,O,O,O]);
+display(row14,[O,I,I,I,I,I,O]);
+display(row13,[O,I,O,O,O,I,O]);
+display(row12,[O,I,O,O,O,I,O]);
+display(row11,[O,I,I,I,I,I,O]);
+display(row10,[O,O,O,O,O,O,O]);
+break;
+case 7:
+display(row18,[O,O,O,O,O,O,O]);
+display(row17,[O,I,I,I,I,I,O]);
+display(row16,[O,O,O,O,O,I,O]);
+display(row15,[O,O,O,O,O,I,O]);
+display(row14,[O,O,O,O,O,I,O]);
+display(row13,[O,O,O,O,O,I,O]);
+display(row12,[O,O,O,O,O,I,O]);
+display(row11,[O,O,O,O,O,I,O]);
+display(row10,[O,O,O,O,O,O,O]);
+break;
+case 8:
+display(row18,[O,O,O,O,O,O,O]);
+display(row17,[O,I,I,I,I,I,O]);
+display(row16,[O,I,O,O,O,I,O]);
+display(row15,[O,I,O,O,O,I,O]);
+display(row14,[O,I,I,I,I,I,O]);
+display(row13,[O,I,O,O,O,I,O]);
+display(row12,[O,I,O,O,O,I,O]);
+display(row11,[O,I,I,I,I,I,O]);
+display(row10,[O,O,O,O,O,O,O]);
+break;
+case 9:
+display(row10,[O,O,O,O,O,O,O]);
+display(row11,[O,I,I,I,I,I,O]);
+display(row12,[O,O,O,O,O,I,O]);
+display(row13,[O,O,O,O,O,I,O]);
+display(row14,[O,I,I,I,I,I,O]);
+display(row15,[O,I,O,O,O,I,O]);
+display(row16,[O,I,O,O,O,I,O]);
+display(row17,[O,I,I,I,I,I,O]);
+display(row18,[O,O,O,O,O,O,O]);
+break;
+case 10:
+display(row10,[O,O,O,O,O,O,O]);
+display(row11,[O,I,I,I,I,I,O]);
+display(row12,[O,I,O,O,O,I,O]);
+display(row13,[O,I,O,O,O,I,O]);
+display(row14,[O,I,O,O,O,I,O]);
+display(row15,[O,I,O,O,O,I,O]);
+display(row16,[O,I,O,O,O,I,O]);
+display(row17,[O,I,I,I,I,I,O]);
+display(row18,[O,O,O,O,O,O,O]);
+break;
+}
+    }
+*/
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
